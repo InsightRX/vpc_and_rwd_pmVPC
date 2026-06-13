@@ -1,0 +1,36 @@
+$PROBLEM 1cmt iv example model
+
+$INPUT ID TIME AMT EVID DV CMT
+
+$DATA ../data/obs_nm.csv IGNORE=@
+
+$SUBR ADVAN1 TRANS2
+
+$PK
+CL = THETA(1) * EXP(ETA(1))
+V = THETA(2) * EXP(ETA(2))
+S1 = V
+
+$ERROR
+IPRED = F
+Y = IPRED * (1 + THETA(3) * EPS(1)) 
+
+$THETA
+8.66 ; CL
+100 ; V
+0.2 FIX
+
+$OMEGA BLOCK(2)
+0.25 
+0.00050625 0.09
+
+$SIGMA 
+1 FIX
+
+; $EST METHOD=1 MAXEVAL=0 POSTHOC
+
+$SIM (12345) (54321) ONLYSIM SUBPROBLEMS=200 ; use original dataset and sim n=200 subproblems
+
+$TABLE ID TIME EVID DV PRED
+  NOAPPEND
+  FILE=simtab1

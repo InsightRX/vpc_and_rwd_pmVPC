@@ -1,0 +1,26 @@
+# 1-compartment IV model — FeRx translation of nm/run1.mod
+# (ADVAN1 TRANS2: CL/V, two ETAs, block omega, proportional error).
+#
+# Parameters are kept at the poster's fixed values, mirroring the NONMEM
+# `$EST MAXEVAL=0 POSTHOC` run: no estimation, posthoc ETAs only.
+
+[parameters]
+  theta TVCL(8.66, 0.1, 150.0)
+  theta TVV(100.0,  1.0, 2000.0)
+
+  # $OMEGA BLOCK(2): lower triangle [w11, w21, w22]
+  block_omega (ETA_CL, ETA_V) = [0.25, 0.00050625, 0.09]
+
+  # NONMEM `Y = IPRED*(1 + THETA(3)*EPS(1))` with THETA(3)=0.2, SIGMA=1 FIX is a
+  # proportional error with SD 0.2.
+  sigma PROP_ERR ~ 0.2 (sd)
+
+[individual_parameters]
+  CL = TVCL * exp(ETA_CL)
+  V  = TVV  * exp(ETA_V)
+
+[structural_model]
+  pk one_cpt_iv(cl=CL, v=V)
+
+[error_model]
+  DV ~ proportional(PROP_ERR)
