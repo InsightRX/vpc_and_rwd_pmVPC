@@ -20,11 +20,7 @@ In the figure below, the most-left plot is the regular VPC, showing very large b
 prediction-correction (pcVPC), but was not able to correct for all bias. Only the
 most-right plot, the pmVPC, correctly showed that the model was unbiased.
 
-``` r
-knitr::include_graphics("figures/comb.png")
-```
-
-![](figures/case1_comb.png)<!-- -->
+<img src="figures/comb.png" width="1024" />
 
 ([Another potential solution was presented at PAGE as well](https://www.page-meeting.org/Abstracts/reference-corrected-vpcs-addressing-model-evaluation-challenges-with-real-world-data-and-adaptive-designs/). This approach works well if the source of the bias is known.)
 
