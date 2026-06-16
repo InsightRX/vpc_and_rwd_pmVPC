@@ -10,8 +10,7 @@ may display apparent model misspecification, even when models are
 well-specified. 
 
 A [Short Report in CPT](https://ascpt.onlinelibrary.wiley.com/doi/full/10.1002/cpt.70306) explains this concept in more detail. In that paper, however,
-we only described the *problem*, but did not describe a solution. More recently, however, we have uncovered a solution to the issue: one can correct for the bias is by making a propensity-score-
-matched VPC. 
+we only described the *problem*, but did not describe a solution. More recently, however, we have uncovered a solution to the issue: one can correct for the bias is by making a propensity-score-matched VPC. 
 
 In such a [pmVPC](https://www.page-meeting.org/Abstracts/visual-predictive-checks-for-real-world-data-using-propensity-score-matching/), the simulated parameter sets in the VPC are matched
 to the observed subjects (based on their ETA values). And then for each simulated subject, the dosing/sampling design is used that matches their ETA profile. For example for simulate subjects with high clearance, they are more likely to get matched to an individual dataset design that has longer intervals (if interval-adaptation was performed in the observed dataset). While we are currently researching the pmVPC in more detail, initial results are very promising, and were able to correct very large bias induced by this phenomenon.
@@ -35,7 +34,7 @@ We will soon provide automated tools in the [vpc R package](https://github.com/r
 ## How to run the examples in this repo
 
 - unzip `data/data.zip`, extract the data files in that folder.
-- if interested in the NONMEM workflow, open the R script `R/example_poster_nonmem.R`. Then just follow along with the script. At two points, NONMEM has to be invoked. Make sure to update the path to your NONMEM, or just run the listed models manually. If you don't have NONMEM installed, you can also just unzip `nm_output.zip`. This will give you the `etatab1`, `simtab1`, and `simtab1_pm` that you will need.
+- if interested in the NONMEM workflow, open the R script `R/example_poster_nonmem.R` (or `R/example_poster_nonmem_nodep.R` for a version that doesn't require any package dependencies other than `vpc`). Then just follow along with the script. At two points, NONMEM has to be invoked. Make sure to update the path to your NONMEM, or just run the listed models manually. If you don't have NONMEM installed, you can also just unzip `nm_output.zip`. This will give you the `etatab1`, `simtab1`, and `simtab1_pm` that you will need.
 - if intrested in the FeRx workflow, open the R script `R/example_poster_ferx`.
 
 Please open an Issue in this repo if something is unclear or you think something is broken or missing.
